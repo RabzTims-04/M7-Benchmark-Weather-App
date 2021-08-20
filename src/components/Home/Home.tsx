@@ -16,7 +16,7 @@ const Home = () => {
                         <MyNav/>                        
                     </Col>
                     <Col xs={11} sm={11} md={11} lg={7} xl={8}>
-                        <Row className="py-5">
+                        <Row className="py-5 carousal-row">
                             <TopCarousal/>
                         </Row>
                         <Row>

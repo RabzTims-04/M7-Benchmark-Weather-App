@@ -11,3 +11,12 @@
     left: 45px;
     top: 80px;
   }
+
+  /* .carousal-row{
+    overflow-x: scroll;
+    scroll-behavior:initial;
+  }
+
+  .carousal-row::-webkit-scrollbar{
+    display: none;
+  } */

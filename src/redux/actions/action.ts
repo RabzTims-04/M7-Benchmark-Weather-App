@@ -1,6 +1,12 @@
 import { Dispatch } from "redux"
 import { ReduxStore } from "../../types/ReduxStore"
+import { Weather } from "../../types/WeatherList"
 import * as actionTypes from "./actionTypes"
+
+export const selectedWeatherAction = (selectedWeather:Weather) => ({
+    type: actionTypes.GET_WEATHER_DETAILS,
+    payload: selectedWeather
+})
 
 export const fetchFiveDayWeatherAction = (city:string) => {
     return async (dispatch: Dispatch, getState:() => ReduxStore) => {

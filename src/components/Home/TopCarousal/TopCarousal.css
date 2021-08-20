@@ -17,7 +17,7 @@
 #carousal-card small{
     font-size: small;
 }
-
+/* 
 #carousal-card::after{
     content:"";
     display:block;
@@ -46,29 +46,37 @@
     z-index: 10;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-}
+} */
 
-#top-carousal{
+    #top-carousal{
     min-width: 200px;
-    padding: 3px; 
-    overflow-x: scroll;
-    scroll-behavior:initial;  
+    padding: 3px;   
 }
 
-#top-carousal::-webkit-scrollbar {
+   /*  #top-carousal::-webkit-scrollbar {
     display: none;
-  }
+}  */
 
   .infinite-row {
+    overflow-x: scroll;
+    scroll-behavior:smooth;
     width: auto;
     display: flex;
     flex-direction: row;
-    animation-name: slide;  
+    /* animation-name: slide; */  
     animation-duration: 15s;
     animation-iteration-count: infinite;   
-  }
+}
 
-  .imagetransition{
+.infinite-row::-webkit-scrollbar {
+    display: none;
+}
+
+.infinite-row:hover{
+  animation-play-state: paused;
+}
+
+.imagetransition{
     transform: translateX(0px);  
     transition: 1s all;
     /* cursor: pointer; */
@@ -80,36 +88,39 @@
     z-index:2;
   }
 
-  .infinite-row:hover{
-    animation-play-state: paused;
-  }
 
   @keyframes slide{
-    10%{
+    0%{
         transform: translateX(0);
     }
-   15%, 25%{
-        transform: translateX(-150px);
+   10%{
+        transform: translateX(-10%);
     }
-   30%, 40%{
-        transform: translateX(-300px);
+   20%{
+        transform: translateX(-20%);
     }
-    45%,55%{
-        transform: translateX(-350px);
+    30%{
+        transform: translateX(-30%);
     }
-   60%, 80%{
-    transform: translateX(-400px);
+   40%{
+    transform: translateX(-40%);
     }
-    100%, 150%{
-    transform: translateX(-500px);
+    50%{
+    transform: translateX(-50%);
     }
-    160%, 200%{
-    transform: translateX(-600px);
+    60%{
+    transform: translateX(-60%);
     }
-    220%, 250%{
-    transform: translateX(-700px);
+    70%{
+    transform: translateX(-70%);
     }
-    260%, 300%{
+    80%{
+    transform: translateX(-80%);
+    }
+    90%{
+    transform: translateX(-100%);
+    }
+    100%{
     transform: translateX(0);
     }
   
@@ -121,4 +132,3 @@
     } */
   
   }
-  

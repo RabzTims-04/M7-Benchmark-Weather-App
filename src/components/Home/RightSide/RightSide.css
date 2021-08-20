@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Timea';
+    src: url("../../../assets/fonts/Timea.ttf");
+}
+
 #right-card{
     background-color: #101C42;
     border-radius: 25px;
@@ -8,8 +13,8 @@
     content:"";
     display:block;
     position:absolute;
-    top:-10%;
-    bottom:85%;
+    top:0;
+    bottom:90%;
     left:0;
     right:0;
     background:#0A153E;
@@ -21,9 +26,9 @@
 .right-card-img{
     position: absolute;
     width: 150px;
-    height: 120px;
-    top: -50px;
-    left: 50px;
+    height: 140px;
+    top: -70px;
+    left: 60px;
     z-index: 20;
 }
 
@@ -31,10 +36,13 @@
     font-size: medium;
 }
 
-.footer-details p{
-    font-size: medium;
+.card-list p{
+    font-family: 'Timea';
+    font-size:2em;
+    padding-top: 2rem;
+    margin-bottom: 0;
 }
 
 .footer-details span{
-    font-size: small;
+    font-size: medium;
 }
