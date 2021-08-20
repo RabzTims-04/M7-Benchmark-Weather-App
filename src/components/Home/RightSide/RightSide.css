@@ -1,0 +1,40 @@
+#right-card{
+    background-color: #101C42;
+    border-radius: 25px;
+    min-height: 75vh;
+}
+
+#right-card:after{
+    content:"";
+    display:block;
+    position:absolute;
+    top:-10%;
+    bottom:85%;
+    left:0;
+    right:0;
+    background:#0A153E;
+    opacity:0.6;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.right-card-img{
+    position: absolute;
+    width: 150px;
+    height: 120px;
+    top: -50px;
+    left: 50px;
+    z-index: 20;
+}
+
+.card-list span{
+    font-size: medium;
+}
+
+.footer-details p{
+    font-size: medium;
+}
+
+.footer-details span{
+    font-size: small;
+}

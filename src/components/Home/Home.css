@@ -1,0 +1,13 @@
+#home-body{
+    background-color: #0A153E;
+    border-radius: 25px;
+    min-height: 85vh;
+}
+
+.main-logo{
+    height: 95px;
+    width: 110px;
+    position: absolute;
+    left: 45px;
+    top: 80px;
+  }

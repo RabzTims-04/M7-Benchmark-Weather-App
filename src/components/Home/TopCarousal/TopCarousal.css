@@ -1,0 +1,124 @@
+#carousal-card{
+    height: 130px;
+    width: 300%;
+}
+
+#carousal-card .card{
+    border-radius: 15px;
+    background-color: #101C42;
+}
+
+#carousal-card .card-img{
+
+    height: 50px;
+    width: 50px;
+}
+
+#carousal-card small{
+    font-size: small;
+}
+
+#carousal-card::after{
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:94%;
+    background:#0A153E;
+    opacity:0.7;
+    z-index: 10;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+#carousal-card::before{
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:94%;
+    right:0;
+    background:#0A153E;
+    opacity:0.7;
+    z-index: 10;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#top-carousal{
+    min-width: 200px;
+    padding: 3px; 
+    overflow-x: scroll;
+    scroll-behavior:initial;  
+}
+
+#top-carousal::-webkit-scrollbar {
+    display: none;
+  }
+
+  .infinite-row {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    animation-name: slide;  
+    animation-duration: 15s;
+    animation-iteration-count: infinite;   
+  }
+
+  .imagetransition{
+    transform: translateX(0px);  
+    transition: 1s all;
+    /* cursor: pointer; */
+  }
+  
+  .imagetransition:hover{
+    box-shadow: 2px 0 20px 2px rgba(255, 255, 255,4 );
+    transform: scale(1.09);
+    z-index:2;
+  }
+
+  .infinite-row:hover{
+    animation-play-state: paused;
+  }
+
+  @keyframes slide{
+    10%{
+        transform: translateX(0);
+    }
+   15%, 25%{
+        transform: translateX(-150px);
+    }
+   30%, 40%{
+        transform: translateX(-300px);
+    }
+    45%,55%{
+        transform: translateX(-350px);
+    }
+   60%, 80%{
+    transform: translateX(-400px);
+    }
+    100%, 150%{
+    transform: translateX(-500px);
+    }
+    160%, 200%{
+    transform: translateX(-600px);
+    }
+    220%, 250%{
+    transform: translateX(-700px);
+    }
+    260%, 300%{
+    transform: translateX(0);
+    }
+  
+    /* 75%,80%{
+        transform: translateX(-750px);
+    } */
+    /* 85%,95%{
+        transform: translateX(0);
+    } */
+  
+  }
+  

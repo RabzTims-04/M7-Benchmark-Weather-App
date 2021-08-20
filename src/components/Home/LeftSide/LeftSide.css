@@ -1,0 +1,18 @@
+#left-card{
+    height: 200px;
+    width: 300%;
+}
+
+#left-card .card{
+    border-radius: 15px;
+    background-color: #101C42;
+}
+
+#left-card .card:hover{
+    border-radius: 15px;
+    background-color: lightskyblue;
+}
+
+#left-card small{
+    font-size: small;
+}

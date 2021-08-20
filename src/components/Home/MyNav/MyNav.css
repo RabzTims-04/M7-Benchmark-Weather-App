@@ -1,0 +1,33 @@
+.nav-body {
+    margin: 0;
+    padding: 250% 0;
+    font-size: 100%;
+}
+.left {
+    width: 20%;
+    float: left;
+}
+.nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding-bottom: 2.5rem;
+}
+
+.nav li {    
+    margin: 1px 0;
+}
+
+.nav li Button {
+    display: block;
+    line-height: 3em;
+    width: 100%;
+    text-decoration: none;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.nav li Button:hover {
+    background: linear-gradient(214deg, rgba(23,33,70,1) 19%, rgba(31,34,87,1) 42%, rgba(23,33,70,1) 83%);
+    border-color: transparent;
+}
