@@ -9,6 +9,20 @@
     min-height: 75vh;
 }
 
+#right-card a{
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    text-decoration: none;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+#right-card a:hover{
+    color: rgb(182, 174, 174);
+}
+
 #right-card:after{
     content:"";
     display:block;

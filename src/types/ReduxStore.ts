@@ -6,6 +6,9 @@ export interface ReduxStore{
         weatherArray:Weather[],
         selectedWeather:Weather | null
     }
+    daySelected:{
+        isSelected:boolean
+    }
     currentDay:{
         weatherObj:CurrentDay | null
     }

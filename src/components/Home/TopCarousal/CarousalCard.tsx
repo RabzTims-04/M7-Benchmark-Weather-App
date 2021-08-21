@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEvent } from 'react'
 import { Card, CardGroup } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectedWeatherAction } from '../../../redux/actions/action'
+import { selectedDayAction, selectedWeatherAction } from '../../../redux/actions/action'
 import { ReduxStore } from '../../../types/ReduxStore'
 
 const CarousalCard = () => {
@@ -61,7 +61,13 @@ const CarousalCard = () => {
             {
             fiveDayWeather.weatherArray.map((array,i) => 
             <Card 
-            onClick={(e:MouseEvent<HTMLElement>) => dispatch(selectedWeatherAction(array))}
+            onClick={(e:MouseEvent<HTMLElement>) => 
+                {
+                    return (
+                        dispatch(selectedWeatherAction(array)),dispatch(selectedDayAction(true))
+                    )
+                }
+                }
             key={i} 
             className="p-2 mx-1 imagetransition">
                 <small className="text-light">{utcDay(array.dt_txt)} {utcTime(array.dt_txt)}</small>

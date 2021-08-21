@@ -59,7 +59,7 @@
 
   .infinite-row {
     overflow-x: scroll;
-    scroll-behavior:smooth;
+    scroll-behavior:initial;
     width: auto;
     display: flex;
     flex-direction: row;

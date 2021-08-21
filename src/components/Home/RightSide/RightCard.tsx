@@ -1,31 +1,37 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { useEffect } from 'react'
-import { Card, Image, Row, Col } from 'react-bootstrap'
+import { Card, Image, Row, Col, Button } from 'react-bootstrap'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
-import { fetchCurrentDayWeatherAction } from '../../../redux/actions/action'
+import { fetchCurrentDayWeatherAction, selectedDayAction } from '../../../redux/actions/action'
 import { connect } from 'react-redux'
 import { CurrentDay } from '../../../types/CurrentDayWeather'
 import { ReduxStore } from '../../../types/ReduxStore'
 import { Weather } from '../../../types/WeatherList'
+import { AiOutlineHome } from "react-icons/ai"
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom'
 
 const mapStateToProps = (state:ReduxStore) => ({
     currentDay: state.currentDay.weatherObj,
-    selectedDay:state.fiveDayWeather.selectedWeather
+    selectedDay:state.fiveDayWeather.selectedWeather,
+    isSelected:state.daySelected.isSelected
 })
 
 const mapDispatchToProps = (dispatch:ThunkDispatch<Action, any, any>) => ({
-    currentWeather: (city: string) =>dispatch(fetchCurrentDayWeatherAction(city))
+    currentWeather: (city: string) =>dispatch(fetchCurrentDayWeatherAction(city)),
+    isSelectedDay: (selected:boolean) => dispatch(selectedDayAction(selected))
 })
 
-interface RightCardProps{
+interface RightCardProps extends RouteComponentProps{
     currentWeather:(city:string) => void
     currentDay: CurrentDay | null
     selectedDay: Weather | null
+    isSelectedDay: (selected:boolean) => void
+    isSelected: boolean
     
 }
 
-const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
+const RightCard = ({currentWeather,currentDay, selectedDay, isSelectedDay, isSelected}:RightCardProps) => {
     
     useEffect(() => {
         currentWeather("saarbrücken")
@@ -81,16 +87,21 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
         <Card id='right-card' style={{ height: '28rem' }}>
             <Card.Body >
                 <Image className="right-card-img" fluid 
-                src={selectedDay? weatherImg(selectedDay?.weather[0].main) :weatherImg(currentDay?.weather[0].main!)} 
+                src={isSelected? weatherImg(selectedDay?.weather[0].main!) : weatherImg(currentDay?.weather[0].main!)} 
                 alt="user avatar" />
+                {isSelected && 
+                <Link onClick={(e:MouseEvent<HTMLElement>) =>isSelectedDay(false)} to="/">
+                    <AiOutlineHome style={{width:"18px", height:"18px"}} />
+                </Link>}
+             
                 <Card.Title className="mt-5 pt-3">{currentDay?.name}</Card.Title>
                 <Card.Text className="card-list">
                 <div>
-                <Card.Subtitle className="mb-2 text-muted pt-2">{selectedDay? selectedDay?.weather[0].main : currentDay?.weather[0].main}</Card.Subtitle>
-                <small className="my-3">{selectedDay? selectedDay?.weather[0].description :currentDay?.weather[0].description}</small>
+                <Card.Subtitle className="mb-2 text-muted pt-2">{isSelected? selectedDay?.weather[0].main : currentDay?.weather[0].main}</Card.Subtitle>
+                <small className="my-3">{isSelected? selectedDay?.weather[0].description :currentDay?.weather[0].description}</small>
                 </div>
-                <p>{utcTime(selectedDay ? selectedDay?.dt_txt : currentDay?.dt!)}</p> 
-                <span>{utcDay( selectedDay? selectedDay?.dt_txt : currentDay?.dt!)}</span>       
+                <p>{utcTime(isSelected ? selectedDay?.dt_txt! : currentDay?.dt!)}</p> 
+                <span>{utcDay( isSelected? selectedDay?.dt_txt! : currentDay?.dt!)}</span>       
                 </Card.Text>
                 <div className="footer-details">
                 <div className="d-flex justify-content-between pt-2">
@@ -98,7 +109,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Temperature
                     </span>
                     <span>
-                        {selectedDay? Math.round(selectedDay?.main.temp) : Math.round(currentDay?.main.temp!)}°C
+                        {isSelected? Math.round(selectedDay?.main.temp!) : Math.round(currentDay?.main.temp!)}°C
                     </span>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -106,7 +117,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Feels Like
                     </span>
                     <span>
-                        {selectedDay? Math.round(selectedDay?.main.feels_like) : Math.round(currentDay?.main.feels_like!)}°C
+                        {isSelected? Math.round(selectedDay?.main.feels_like!) : Math.round(currentDay?.main.feels_like!)}°C
                     </span>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -114,7 +125,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Min Temprature
                     </span>
                     <span>
-                        {selectedDay? Math.round(selectedDay?.main.temp_min) : Math.round(currentDay?.main.temp_min!)}°C
+                        {isSelected? Math.round(selectedDay?.main.temp_min!) : Math.round(currentDay?.main.temp_min!)}°C
                     </span>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -122,7 +133,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Max Temperature
                     </span>
                     <span>
-                        {selectedDay? Math.round(selectedDay?.main.temp_max) : Math.round(currentDay?.main.temp_max!)}°C
+                        {isSelected? Math.round(selectedDay?.main.temp_max!) : Math.round(currentDay?.main.temp_max!)}°C
                     </span>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -130,7 +141,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Humidity
                     </span>
                     <span>
-                        {selectedDay? selectedDay?.main.humidity : currentDay?.main.humidity}%
+                        {isSelected? selectedDay?.main.humidity : currentDay?.main.humidity}%
                     </span>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -138,7 +149,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Pressure
                     </span>
                     <span>
-                        {selectedDay? selectedDay?.main.pressure : currentDay?.main.pressure} hpa
+                        {isSelected? selectedDay?.main.pressure : currentDay?.main.pressure} hpa
                     </span>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -146,7 +157,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
                         Wind
                     </span>
                     <span>
-                        {selectedDay? Math.round(selectedDay?.wind.speed) * 10 : Math.round(currentDay?.wind.speed!) * 10} km/h
+                        {isSelected? Math.round(selectedDay?.wind.speed!) * 10 : Math.round(currentDay?.wind.speed!) * 10} km/h
                     </span>
                 </div> 
                 </div> 
@@ -155,4 +166,4 @@ const RightCard = ({currentWeather,currentDay, selectedDay}:RightCardProps) => {
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RightCard)
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(RightCard))

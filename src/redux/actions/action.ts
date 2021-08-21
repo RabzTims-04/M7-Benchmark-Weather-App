@@ -8,6 +8,11 @@ export const selectedWeatherAction = (selectedWeather:Weather) => ({
     payload: selectedWeather
 })
 
+export const selectedDayAction = (selected:boolean) => ({
+    type: actionTypes.DAY_SELECTED,
+    payload: selected
+})
+
 export const fetchFiveDayWeatherAction = (city:string) => {
     return async (dispatch: Dispatch, getState:() => ReduxStore) => {
         try {
