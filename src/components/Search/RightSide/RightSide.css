@@ -6,11 +6,7 @@
 #right-card{
     background-color: #101C42;
     border-radius: 25px;
-    min-height: 80vh!important;
-}
-
-#right-card:hover{
-    background-color: #2231614d;
+    min-height: 75vh;
 }
 
 #right-card a{

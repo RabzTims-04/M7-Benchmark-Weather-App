@@ -1,5 +1,5 @@
 import { initialState } from "../store/store";
-import { FETCH_WEATHER_ARRAY, GET_WEATHER_DETAILS } from "../actions/actionTypes";
+import { FETCH_WEATHER_ARRAY, GET_TEMPERATURE_ARRAY, GET_TIME_ARRAY, GET_WEATHER_DETAILS } from "../actions/actionTypes";
 import { AnyAction } from "redux";
 
 const fiveDayWeatherReducer = (state= initialState.fiveDayWeather, action: AnyAction) => {
@@ -11,6 +11,14 @@ const fiveDayWeatherReducer = (state= initialState.fiveDayWeather, action: AnyAc
         case GET_WEATHER_DETAILS: return {
             ...state,
             selectedWeather: action.payload
+        }
+        case GET_TIME_ARRAY: return {
+            ...state,
+            timeArray: action.payload
+        }
+        case GET_TEMPERATURE_ARRAY: return {
+            ...state,
+            temperatureArray: action.payload
         }
         default:{
             return state

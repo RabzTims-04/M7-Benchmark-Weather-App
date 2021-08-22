@@ -2,6 +2,7 @@
     background-color: #0A153E;
     border-radius: 25px;
     min-height: 85vh;
+    padding-bottom: 2rem;
 }
 
 .main-logo{
@@ -11,12 +12,3 @@
     left: 45px;
     top: 80px;
   }
-
-  /* .carousal-row{
-    overflow-x: scroll;
-    scroll-behavior:initial;
-  }
-
-  .carousal-row::-webkit-scrollbar{
-    display: none;
-  } */

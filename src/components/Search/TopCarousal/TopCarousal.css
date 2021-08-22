@@ -1,25 +1,25 @@
-#carousal-card{
+#search-carousal-card{
     height: 130px;
     width: 300%;
     cursor: pointer;  
 }
 
-#carousal-card .card{
+#search-carousal-card .card{
     border-radius: 15px;
     background-color: #101C42;
 }
 
-#carousal-card .card-img{
+#search-carousal-card .card-img{
 
     height: 50px;
     width: 50px;
 }
 
-#carousal-card small{
+#search-carousal-card small{
     font-size: small;
 }
 /* 
-#carousal-card::after{
+#search-carousal-card::after{
     content:"";
     display:block;
     position:absolute;
@@ -34,7 +34,7 @@
     border-top-left-radius: 15px;
 }
 
-#carousal-card::before{
+#search-carousal-card::before{
     content:"";
     display:block;
     position:absolute;
@@ -49,7 +49,7 @@
     border-top-right-radius: 15px;
 } */
 
-    #top-carousal{
+    #search-top-carousal{
     min-width: 200px;
     padding: 3px;  
     cursor: pointer;   

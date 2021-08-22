@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MouseEvent } from 'react'
 import { Card, CardGroup } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectedDayAction, selectedWeatherAction } from '../../../redux/actions/action'
+import { searchSelectedDayAction, searchSelectedWeatherAction } from '../../../redux/actions/action'
 import { ReduxStore } from '../../../types/ReduxStore'
 
 const CarousalCard = () => {
@@ -55,18 +55,20 @@ const CarousalCard = () => {
             return "Sun"
         }    }
 
-    const  { fiveDayWeather } = useSelector((state:ReduxStore) => state)
+    const  { searchWeather } = useSelector((state:ReduxStore) => state)
+    const { fiveDayWeather } = searchWeather
+    const fiveDayWeatherArr = fiveDayWeather?.list
     const dispatch = useDispatch()
 
     return (
-        <CardGroup className="text-center" id="carousal-card">
+        <CardGroup className="text-center" id="search-carousal-card">
             {
-            fiveDayWeather.weatherArray.map((array,i) => 
+            fiveDayWeatherArr && fiveDayWeatherArr.map((array,i) => 
             <Card 
             onClick={(e:MouseEvent<HTMLElement>) => 
                 {
                     return (
-                        dispatch(selectedWeatherAction(array)),dispatch(selectedDayAction(true))
+                        dispatch(searchSelectedWeatherAction(array)),dispatch(searchSelectedDayAction(true))
                     )
                 }
                 }

@@ -21,7 +21,14 @@
     color: yellow;
     margin-bottom: 2rem;
 }
+.search-btn{
+    background-color: transparent;
+    border-radius: 25px;
+    border-color: rgba(109, 105, 105, 0.746);
+    padding:0.5rem 1.5rem;
+}
 
-.apexcharts-xaxis-label{
-    color:blue;
+.search-btn:hover{
+    background-color: rgba(109, 105, 105, 0.246);
+    border-color: #111a363d;
 }

@@ -1,27 +1,19 @@
-#left-card{
+#left-card-fav{
     height: 200px;
     width: 300%;
 }
 
-#left-card .card{
+#left-card-fav .card{
     border-radius: 15px;
     background-color: #101C42;
+    height: 300px;
 }
 
-#left-card .card:hover{
+#left-card-fav .card:hover{
     border-radius: 15px;
     background-color: lightskyblue;
 }
 
-#left-card small{
+#left-card-fav small{
     font-size: small;
-}
-
-.like-icon{
-    color: yellow;
-    margin-bottom: 2rem;
-}
-
-.apexcharts-xaxis-label{
-    color:blue;
 }

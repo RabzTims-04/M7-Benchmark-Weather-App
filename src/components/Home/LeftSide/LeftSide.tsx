@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
-import LeftCard from './LeftCard'
+import LeftCardTop from './LeftCardTop'
+import LeftCardBottom from './LeftCardBottom'
 import './LeftSide.css'
 
 const LeftSide = () => {
@@ -8,10 +9,10 @@ const LeftSide = () => {
         <Container>
             <h4 className="text-start">Today's Highlights</h4>
             <Row className="pt-3">
-                <LeftCard/>
+                <LeftCardTop/> 
             </Row>
             <Row className="py-4">
-                <LeftCard/>
+                <LeftCardBottom/>
             </Row>
         </Container>
     )

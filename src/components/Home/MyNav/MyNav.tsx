@@ -19,14 +19,14 @@ const MyNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/search">
                         <Button>
                             <BiSearchAlt/>
                         </Button>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/favourites">
                         <Button>
                             <BiBookHeart/>
                         </Button>
@@ -40,7 +40,7 @@ const MyNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/maps">
                         <Button>
                             <HiOutlinePhotograph/>
                         </Button>
