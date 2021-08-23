@@ -35,11 +35,13 @@ const LeftCardTop = () => {
                 <ul className="pt-2" style={{listStyle:'none', paddingLeft:"0"}}>
                     <li>
                         <Image style={{marginRight:'1.5rem'}} src='http://openweathermap.org/img/wn/02d.png' alt="sunrise-icon"/>
-                        <Moment style={{fontSize:"x-large"}} format="hh:mm:ss">{(searchWeatherObj?.sys.sunrise!) * 1000}</Moment>                        
+                        <Moment style={{fontSize:"x-large"}} format="hh:mm:ss"
+                        utc add={{s:searchWeatherObj?.timezone}}>{(searchWeatherObj?.sys.sunrise!) * 1000}</Moment>                        
                     </li>
                     <li>
                         <Image style={{marginRight:'1.5rem'}} src='http://openweathermap.org/img/wn/02n.png' alt="sunset-icon"/>
-                        <Moment style={{fontSize:"x-large"}} format="hh:mm:ss">{(searchWeatherObj?.sys.sunset!) * 1000}</Moment>  
+                        <Moment style={{fontSize:"x-large"}} format="hh:mm:ss"
+                        utc add={{s:searchWeatherObj?.timezone}}>{(searchWeatherObj?.sys.sunset!) * 1000}</Moment>  
                     </li>
                 </ul>
                 </Card.Body>
