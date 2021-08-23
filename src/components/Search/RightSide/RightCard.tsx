@@ -26,17 +26,21 @@ const RightCard = () => {
         }
     }
 
-    const utcTime=(offset:number, date?:number) => {
-        const newDate = date ? new Date(date) : new Date()
+    const utcTime=(offset:number, date:number) => {
+        const newDate = new Date(date * 1000)
         const inMinutes = offset/60 
         const currTime = moment(newDate).utcOffset(inMinutes).format('hh:mm A')
         console.log(currTime);        
         return currTime
     }
 
-    const utcDay =(utcDate:number) => {
+    const utcDay =(utcDate:number, offset:number) => {
         const date = new Date(utcDate * 1000)
-        const day = date.getDay()
+        const inMinutes = offset/60 
+        const currTime = moment(date).utcOffset(inMinutes).format('dddd')
+        console.log("NEWWWWWWWW", currTime); 
+        return currTime       
+        /* const day = date.getDay()
         console.log(day);
         if(day === 1){
             return "MONDAY"
@@ -57,7 +61,8 @@ const RightCard = () => {
         }
         else{
             return "SUNDAY"
-        }    }
+        }   */  
+    }
 
     return (
         <Card id='right-card' style={{ height: '28rem' }}>
@@ -78,9 +83,9 @@ const RightCard = () => {
                 <small className="my-3">{daySelected? Math.round(selectedWeatherDay?.main.temp!) : Math.round(searchWeatherObj?.main.temp!)}°C</small>
                 <small className="d-block">{daySelected? selectedWeatherDay?.weather[0].description :searchWeatherObj?.weather[0].description}</small>
                 </div>
-                <p>{utcTime(daySelected? (fiveDayWeather?.city.timezone , (selectedWeatherDay?.dt!) * 1000) : searchWeatherObj?.timezone!)}</p>
+                <p>{daySelected ? utcTime(fiveDayWeather?.city.timezone!, selectedWeatherDay?.dt!) : utcTime(searchWeatherObj?.timezone!, searchWeatherObj?.dt!)}</p>
                 <span>
-                    {utcDay( daySelected? selectedWeatherDay?.dt! : searchWeatherObj?.dt!)}, {' '}  
+                    {daySelected ? utcDay(fiveDayWeather?.city.timezone!, selectedWeatherDay?.dt!) : utcDay(searchWeatherObj?.timezone!, searchWeatherObj?.dt!)}, {' '}  
                     <Moment format="DD MM YYYY">{daySelected? (selectedWeatherDay?.dt!) * 1000 : (searchWeatherObj?.dt!)* 1000 }</Moment>
                     </span> 
                 </Card.Text>

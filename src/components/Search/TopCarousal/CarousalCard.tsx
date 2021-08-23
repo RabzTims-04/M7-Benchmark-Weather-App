@@ -3,6 +3,7 @@ import { Card, CardGroup } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { searchSelectedDayAction, searchSelectedWeatherAction } from '../../../redux/actions/action'
 import { ReduxStore } from '../../../types/ReduxStore'
+import moment from 'moment'
 
 const CarousalCard = () => {
 
@@ -18,23 +19,21 @@ const CarousalCard = () => {
         }
     }
 
-    const utcTime=(utcTime:number) => {
+    const utcTime=(utcTime:number, offset:number) => {
         const date = new Date(utcTime * 1000)
-        const time = date.toLocaleString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',            
-            hour12:true
-        })
-        console.log(time);
-        
-        return time
+        const inMinutes = offset/60
+        const newdate = moment(date).utcOffset(inMinutes).format('hh:mm A')
+        console.log("DATATATATATAT",newdate);                
+        return newdate
     }
 
-    const utcDay =(utcDate:number) => {
+    const utcDay =(utcDate:number, offset:number) => {
         const date = new Date(utcDate * 1000)
-        const day = date.getDay()
-        console.log(day);
-        if(day === 1){
+        const inMinutes = offset/60 
+        const currTime = moment(date).utcOffset(inMinutes).format('ddd')
+        console.log("NEWWWWWWWW", currTime); 
+        return currTime
+        /* if(day === 1){
             return "Mon"
         }else if(day === 2){
             return "Tue"
@@ -53,7 +52,8 @@ const CarousalCard = () => {
         }
         else{
             return "Sun"
-        }    }
+        }   */  
+    }
 
     const  { searchWeather } = useSelector((state:ReduxStore) => state)
     const { fiveDayWeather } = searchWeather
@@ -74,7 +74,7 @@ const CarousalCard = () => {
                 }
             key={i} 
             className="p-2 mx-1 imagetransition">
-                <small className="text-light">{utcDay(array.dt)} {utcTime(array.dt)}</small>
+                <small className="text-light">{utcDay(array.dt, fiveDayWeather?.city.timezone!)} {utcTime(array.dt, fiveDayWeather?.city.timezone!)}</small>
                 <div className="py-2">
                  <Card.Img src={weatherImg(array.weather[0].main)} />
                 </div>
