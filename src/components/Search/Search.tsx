@@ -21,9 +21,10 @@ const Search = () => {
     const dispatch = useDispatch<ThunkDispatch<Action, any, any>>()
 
     return (
-        <Container id="home-body">
+        <Container className={searchWeather.searchWeatherObj === null ?'search-column' : 'none'}  id="home-body">
             <Image fluid className="main-logo" src={logo} alt="logo" />
-                <Row>
+
+                <Row >
                     <Col xs={1} sm={1} md={1} lg={1} xl={1}>
                        <MyNav/>                       
                     </Col>
