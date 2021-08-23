@@ -52,7 +52,8 @@
     #search-top-carousal{
     min-width: 200px;
     padding: 3px;  
-    cursor: pointer;   
+    cursor: pointer;  
+    overflow: hidden; 
 }
 
    /*  #top-carousal::-webkit-scrollbar {
@@ -61,7 +62,7 @@
 
   .infinite-row {
     cursor: pointer;  
-    overflow-x: scroll;
+    overflow: scroll;
     scroll-behavior:initial;
     width: auto;
     display: flex;
@@ -73,7 +74,7 @@
 }
 
 .infinite-row::-webkit-scrollbar {
-    display: none;
+    
     
 }
 

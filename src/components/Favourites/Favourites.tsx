@@ -16,30 +16,25 @@ const Favourites = () => {
                     <Col xs={1} sm={1} md={1} lg={1} xl={1}>
                         <MyNav/>                        
                     </Col>
-           {/*          <Col xs={11} sm={11} md={11} lg={7} xl={8}>
-                        <Row className="py-5 carousal-row">
-                           
-                        </Row>
-                        <Row>
-                           
-                        </Row>
-                    </Col> */}
-                    <Col className="d-flex mx-5" xs={2} sm={2} md={2} lg={2} xl={1}>                         
-                           {favourites?.locations.map( location => 
+                    <Col className="" xs={11} sm={11} md={11} lg={11} xl={11}>                         
+                        <Container>
+                            <Row>
                             <Col id="left-card-fav" md={4}>
-                                <Card  style={{ width: '18rem' }}>
-                                <Card.Body>
-                                  <Card.Title>{location.name}</Card.Title>
-                                  <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
-                                  <Card.Text>
-                                    
-                                  </Card.Text>
-                                  <Card.Link href="#"></Card.Link>
-                                  <Card.Link href="#"></Card.Link>
-                                </Card.Body>
-                              </Card>
-                           </Col>
-                        )}                                               
+                                {favourites?.locations.map( location =>                                 
+                                    <Card  style={{ width: '18rem' }}>
+                                    <Card.Body>
+                                    <Card.Title>{location.name}</Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
+                                    <Card.Text>                                        
+                                    </Card.Text>
+                                    <Card.Link href="#"></Card.Link>
+                                    <Card.Link href="#"></Card.Link>
+                                    </Card.Body>
+                                </Card>
+                                )}       
+                            </Col>
+                            </Row>
+                        </Container>                                        
                     </Col>
                 </Row>            
         </Container>

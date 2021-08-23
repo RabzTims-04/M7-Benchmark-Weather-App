@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Card, CardGroup } from "react-bootstrap"
 import { useSelector } from 'react-redux'
 import { ReduxStore } from '../../../types/ReduxStore'
-import { AiFillLike, AiFillDislike } from 'react-icons/ai'
 import Chart from 'react-apexcharts'
 import "./LeftSide.css"
 import { useState } from 'react'
@@ -35,9 +34,6 @@ interface LeftCardBottomState{
 }
 
 const LeftCardBottom = () => {
-
-    const { fiveDayWeather } = useSelector((state:ReduxStore) => state)
-    const { timeArray, temperatureArray } = fiveDayWeather
 
      const [options, setOptions ] = useState<LeftCardBottomState>({
         chart: {
@@ -102,26 +98,11 @@ const LeftCardBottom = () => {
         })
     },[])
 
-
-    const qualityMeasure = () => {
-        const airQualityMeasure = airQualityObj?.list[0].main.aqi
-        if(airQualityMeasure === 1){
-            return "Good"
-        }else if(airQualityMeasure === 2){
-            return "Fair"
-        }else if(airQualityMeasure === 3){
-            return "Moderate"
-        }else if(airQualityMeasure === 4){
-            return "Poor"
-        }else{
-            return "Very Poor"
-        }
-    }
-
-    const { currentDay, airQuality } = useSelector((store:ReduxStore) => store)
-    const { airQualityObj } = airQuality
+    const { fiveDayWeather } = useSelector((state:ReduxStore) => state)
+    const { timeArray, temperatureArray } = fiveDayWeather
+    const { currentDay } = useSelector((store:ReduxStore) => store)
     const { weatherObj } = currentDay
-    const airQualityAqi = airQualityObj?.list[0].main.aqi
+
     return (
         <CardGroup id="left-card">
             <Card className="p">
@@ -152,11 +133,11 @@ const LeftCardBottom = () => {
             <Card>
                 <Card.Body>
                 <Card.Title className="pt-3">Air Quality</Card.Title>
-                <p className="pt-3">{airQualityObj?.list[0].components.co}</p>
+                <p className="pt-3"></p>
                 </Card.Body>
                 <Card.Footer>
-                <span className="mx-3">{qualityMeasure()}</span>
-                <span className="mx-3 like-icon">{airQualityAqi === ( 1 || 2) ?<AiFillLike/> :<AiFillDislike/>}</span>
+                <span className="mx-3"></span>
+                <span className="mx-3 like-icon"></span>
                 </Card.Footer>
             </Card>
         </CardGroup>
