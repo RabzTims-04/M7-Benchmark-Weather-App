@@ -1,0 +1,31 @@
+.register-container{
+    height: 200px;
+    position: relative;
+}
+
+.register-col{
+    margin: 0;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border:1px solid white;
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+}
+
+.register-btn{
+    width: 20%;
+    border-radius: 25px;
+    background: linear-gradient(214deg, rgb(30, 38, 66) 19%, rgb(40, 44, 129) 42%, rgb(51, 68, 129) 83%);
+}
+
+.register-btn:hover{
+    background: linear-gradient(214deg, rgba(23,33,70,1) 19%, rgba(31,34,87,1) 42%, rgba(23,33,70,1) 83%);;
+}
+
+.register-form{
+    font-size: 0.9em;
+}

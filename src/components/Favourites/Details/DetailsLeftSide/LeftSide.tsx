@@ -1,43 +1,45 @@
-import { Container, Row, Button } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import LeftCardTop from './LeftCardTop'
 import LeftCardBottom from './LeftCardBottom'
 import './LeftSide.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { ThunkDispatch } from 'redux-thunk'
-import { Action } from 'redux'
-import { addToFavouritesAction, fetchSearchWeatherAction, removeFromFavouritesAction } from '../../../redux/actions/action'
-import { MouseEvent } from 'react'
-import { ReduxStore } from '../../../types/ReduxStore'
+import { CurrentDay } from '../../../../types/CurrentDayWeather'
 import { AiOutlineHeart } from "react-icons/ai" 
 import { FcLike } from "react-icons/fc"
+import { useDispatch, useSelector } from 'react-redux'
+import { ReduxStore } from '../../../../types/ReduxStore'
+import { addToFavouritesAction, removeFromFavouritesAction } from '../../../../redux/actions/action'
+import { MouseEvent } from 'react'
 
-const LeftSide = () => {
+interface LeftSideProps{
+    currentDayProps:{
+        weatherObj: CurrentDay | null
+    }
+}
+
+const LeftSide = ({currentDayProps}:LeftSideProps) => {
 
     const { searchWeather, favourites } = useSelector((state:ReduxStore) => state)
     const { searchWeatherObj } = searchWeather
     const { locations } = favourites
-    const dispatch = useDispatch<ThunkDispatch<Action, any, any>>()
+    const dispatch = useDispatch()
 
     return (
         <Container>
             <div className="d-flex justify-content-between">
             <h4 className="text-start">Today's Highlights</h4>
             {                
-            locations.find(location => location.id === searchWeatherObj?.id) 
+            locations.find(location => location.id === currentDayProps.weatherObj?.id) 
             ? <div 
-            onClick={(e:MouseEvent<HTMLElement>)=>dispatch(removeFromFavouritesAction(searchWeatherObj!))}
+            onClick={(e:MouseEvent<HTMLElement>)=>dispatch(removeFromFavouritesAction(currentDayProps.weatherObj!))}
             className="text-end fav-search-btn">
                 <FcLike/>
             </div>
            : <div 
-            onClick={(e:MouseEvent<HTMLElement>)=>dispatch(addToFavouritesAction(searchWeatherObj!))}
+            onClick={(e:MouseEvent<HTMLElement>)=>dispatch(addToFavouritesAction(currentDayProps.weatherObj!))}
             className="text-end fav-search-btn">
                <AiOutlineHeart/> 
             </div>
             }
-             <Button 
-            onClick={(e:MouseEvent<HTMLElement>)=>dispatch(fetchSearchWeatherAction(""))}
-            className="text-end search-btn">New search</Button>
             </div>
             <Row className="pt-3">
                 <LeftCardTop/> 

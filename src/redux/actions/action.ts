@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent } from "react"
+import { KeyboardEvent } from "react"
 import { Dispatch } from "redux"
 import { ReduxStore } from "../../types/ReduxStore"
 import { Weather } from "../../types/WeatherList"

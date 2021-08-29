@@ -29,39 +29,15 @@ const RightCard = () => {
     const utcTime=(offset:number, date:number) => {
         const newDate = new Date(date * 1000)
         const inMinutes = offset/60 
-        const currTime = moment(newDate).utcOffset(inMinutes).format('hh:mm A')
-        console.log(currTime);        
+        const currTime = moment(newDate).utcOffset(inMinutes).format('hh:mm A')       
         return currTime
     }
 
     const utcDay =(utcDate:number, offset:number) => {
         const date = new Date(utcDate * 1000)
         const inMinutes = offset/60 
-        const currTime = moment(date).utcOffset(inMinutes).format('dddd')
-        console.log("NEWWWWWWWW", currTime); 
-        return currTime       
-        /* const day = date.getDay()
-        console.log(day);
-        if(day === 1){
-            return "MONDAY"
-        }else if(day === 2){
-            return "TUESDAY"
-        }
-        else if(day === 3){
-            return "WEDNESDAY"
-        }
-        else if(day === 4){
-            return "THURSDAY"
-        }
-        else if(day === 5){
-            return "FRIDAY"
-        }
-        else if(day === 6){
-            return "SATURDAY"
-        }
-        else{
-            return "SUNDAY"
-        }   */  
+        const currTime = moment(date).utcOffset(inMinutes).format('dddd') 
+        return currTime        
     }
 
     return (

@@ -1,13 +1,9 @@
 import { Card, CardGroup, Image } from "react-bootstrap"
 import { useSelector } from 'react-redux'
-import { ReduxStore } from '../../../types/ReduxStore'
+import { ReduxStore } from '../../../../types/ReduxStore'
 import { AiFillLike, AiFillDislike } from 'react-icons/ai'
 import Moment from 'react-moment'
 import "./LeftSide.css"
-import { ComposableMap, Geographies, Geography } from "react-simple-maps"
-
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json"
 
 const LeftCardTop = () => {
     
@@ -44,13 +40,12 @@ const LeftCardTop = () => {
                 </Card.Footer>
             </Card>
             <Card className="mx-4">
-               <ComposableMap>
-                   <Geographies geography={geoUrl}>
-                       {({geographies}) => geographies.map(geo => 
-                        <Geography key={geo.rsmKey} geography={geo} />
-                        )}
-                   </Geographies>
-               </ComposableMap>
+                <Card.Body>
+                <Card.Title>Card title</Card.Title>
+                </Card.Body>
+                <Card.Footer>
+                <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
             </Card>
             <Card>
                 <Card.Body className="pb-0">
@@ -58,11 +53,11 @@ const LeftCardTop = () => {
                 <ul className="pt-2" style={{listStyle:'none', paddingLeft:"0"}}>
                     <li>
                         <Image style={{marginRight:'1.5rem'}} src='http://openweathermap.org/img/wn/02d.png' alt="sunrise-icon"/>
-                        <Moment style={{fontSize:"x-large"}} format="hh:mm:ss">{(weatherObj?.sys.sunrise!) * 1000}</Moment>                        
+                        <Moment utc add={{s:weatherObj?.timezone}} style={{fontSize:"x-large"}} format="hh:mm:ss">{(weatherObj?.sys.sunrise!) * 1000}</Moment>                        
                     </li>
                     <li>
                         <Image style={{marginRight:'1.5rem'}} src='http://openweathermap.org/img/wn/02n.png' alt="sunset-icon"/>
-                        <Moment style={{fontSize:"x-large"}} format="hh:mm:ss">{(weatherObj?.sys.sunset!) * 1000}</Moment>  
+                        <Moment utc add={{s:weatherObj?.timezone}} style={{fontSize:"x-large"}} format="hh:mm:ss">{(weatherObj?.sys.sunset!) * 1000}</Moment>  
                     </li>
                 </ul>
                 </Card.Body>

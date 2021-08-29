@@ -1,9 +1,15 @@
 import { Container, Row, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { CurrentDay } from '../../../../types/CurrentDayWeather'
 import RightCard from './RightCard'
 import './RightSide.css'
 
-const RightSide = () => {
+interface LeftSideProps{
+    currentDayProps:{
+        weatherObj: CurrentDay | null
+    }
+}
+
+const RightSide = ({currentDayProps}:LeftSideProps) => {
     return (
         <Container>
             <Row className="py-4 justify-content-end">

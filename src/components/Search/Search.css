@@ -1,9 +1,10 @@
 #custom-form{
-    border-radius: 25px!important;   
+    border-radius: 25px!important;  
+    height: 50px; 
 }
 
 .search-column{
-    background-image: url("https://i.imgur.com/kFuIOzX.gif?noredirect");
+    background-image: url("../../assets/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 25px;

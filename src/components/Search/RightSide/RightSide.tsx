@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Row, Image } from 'react-bootstrap'
 import RightCard from './RightCard'
 import './RightSide.css'

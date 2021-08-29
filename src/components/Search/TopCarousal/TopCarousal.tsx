@@ -1,4 +1,3 @@
-import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import CarousalCard from './CarousalCard'
 import "./TopCarousal.css"

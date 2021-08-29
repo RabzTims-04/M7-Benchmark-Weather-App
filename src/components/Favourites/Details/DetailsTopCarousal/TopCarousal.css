@@ -1,0 +1,140 @@
+#carousal-card{
+    height: 130px;
+    width: 300%;
+    cursor: pointer;  
+}
+
+#carousal-card .card{
+    border-radius: 15px;
+    background-color: #101C42;
+}
+
+#carousal-card .card-img{
+
+    height: 50px;
+    width: 50px;
+}
+
+#carousal-card small{
+    font-size: small;
+}
+/* 
+#carousal-card::after{
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:94%;
+    background:#0A153E;
+    opacity:0.7;
+    z-index: 10;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+#carousal-card::before{
+    content:"";
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:94%;
+    right:0;
+    background:#0A153E;
+    opacity:0.7;
+    z-index: 10;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+} */
+
+    #top-carousal{
+    min-width: 200px;
+    padding: 3px;  
+    cursor: pointer;   
+}
+
+   /*  #top-carousal::-webkit-scrollbar {
+    display: none;
+}  */
+
+  .infinite-row {
+    cursor: pointer;  
+    overflow-x: scroll;
+    scroll-behavior:initial;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    /* animation-name: slide; */  
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+  
+}
+
+.infinite-row::-webkit-scrollbar {
+    display: none;
+    
+}
+
+.infinite-row:hover{
+  animation-play-state: paused;
+}
+
+.imagetransition{
+    transform: translateX(0px);  
+    transition: 1s all;
+ 
+    /* cursor: pointer; */
+  }
+  
+  .imagetransition:hover{
+    box-shadow: 2px 0 20px 2px rgba(255, 255, 255,4 );
+    transform: scale(1.09);
+    z-index:2;
+  }
+
+
+  @keyframes slide{
+    0%{
+        transform: translateX(0);
+    }
+   10%{
+        transform: translateX(-10%);
+    }
+   20%{
+        transform: translateX(-20%);
+    }
+    30%{
+        transform: translateX(-30%);
+    }
+   40%{
+    transform: translateX(-40%);
+    }
+    50%{
+    transform: translateX(-50%);
+    }
+    60%{
+    transform: translateX(-60%);
+    }
+    70%{
+    transform: translateX(-70%);
+    }
+    80%{
+    transform: translateX(-80%);
+    }
+    90%{
+    transform: translateX(-100%);
+    }
+    100%{
+    transform: translateX(0);
+    }
+  
+    /* 75%,80%{
+        transform: translateX(-750px);
+    } */
+    /* 85%,95%{
+        transform: translateX(0);
+    } */
+  
+  }

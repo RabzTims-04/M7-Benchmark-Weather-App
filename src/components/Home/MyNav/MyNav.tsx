@@ -33,7 +33,7 @@ const MyNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/notifications">
                         <Button>
                             <AiOutlineBell/>
                         </Button>
@@ -47,7 +47,7 @@ const MyNav = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/settings">
                         <Button>
                             <AiOutlineSetting/>
                         </Button>

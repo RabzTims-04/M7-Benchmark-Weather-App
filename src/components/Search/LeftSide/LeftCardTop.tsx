@@ -1,10 +1,8 @@
-import React from 'react'
 import { Card, CardGroup, Image } from "react-bootstrap"
 import { useSelector } from 'react-redux'
 import { ReduxStore } from '../../../types/ReduxStore'
 import Moment from 'react-moment'
 import { AiFillLike, AiFillDislike } from 'react-icons/ai'
-import GoogleMap from './GoogleMap'
 import "./LeftSide.css"
 
 const LeftCardTop = () => {

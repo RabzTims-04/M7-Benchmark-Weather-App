@@ -1,19 +1,15 @@
 #left-card-fav{
     height: 200px;
-    width: 300%;
 }
 
 #left-card-fav .card{
     border-radius: 15px;
     background-color: #101C42;
     height: 300px;
+    font-size: medium;
 }
 
 #left-card-fav .card:hover{
     border-radius: 15px;
     background-color: lightskyblue;
-}
-
-#left-card-fav small{
-    font-size: small;
 }

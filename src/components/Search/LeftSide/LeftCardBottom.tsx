@@ -1,12 +1,8 @@
 import React from 'react'
 import { Card, CardGroup } from "react-bootstrap"
-import { useSelector } from 'react-redux'
-import { ReduxStore } from '../../../types/ReduxStore'
 import "./LeftSide.css"
 
 const LeftCardBottom = () => {
-
-    const { searchWeather } = useSelector((store:ReduxStore) => store)
     
     return (
         <CardGroup id="left-card">

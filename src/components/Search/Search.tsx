@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Row, Col, Image, Form, FormControl, Spinner } from 'react-bootstrap'
 import MyNav from '../Home/MyNav/MyNav'
 import TopCarousal from './TopCarousal/TopCarousal'
@@ -12,6 +11,7 @@ import { ReduxStore } from '../../types/ReduxStore'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import { fetchSearchWeatherAction } from '../../redux/actions/action'
+import { BiSearchAlt } from "react-icons/bi"
 
 const Search = () => {
 
@@ -39,7 +39,7 @@ const Search = () => {
                                      <Spinner animation="grow" size="sm" />
                                      <Spinner animation="grow" />
                                      </>
-                                    :<Form className="">
+                                    :<Form className="" style={{position:"relative"}}>
                                         <FormControl
                                             onKeyDown={(e:KeyboardEvent<HTMLInputElement>)=>dispatch(fetchSearchWeatherAction(search, e))}
                                             id="custom-form"
@@ -48,7 +48,8 @@ const Search = () => {
                                             type="text" 
                                             placeholder="Search" 
                                             className=" mt-3" />
-                                    </Form>
+                                                <BiSearchAlt style={{position:"absolute", top:"11px",right:"20px", color:"grey"}}/>
+                                        </Form>
                                     }
                                 </Col>
                             </Row>

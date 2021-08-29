@@ -1,11 +1,25 @@
 import { MouseEvent } from 'react'
 import { Card, CardGroup } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { searchSelectedDayAction, searchSelectedWeatherAction } from '../../../redux/actions/action'
-import { ReduxStore } from '../../../types/ReduxStore'
-import moment from 'moment'
+import { Weather } from '../../../../types/WeatherList'
+import { selectedDayAction, selectedWeatherAction } from '../../../../redux/actions/action'
+import { CurrentDay } from '../../../../types/CurrentDayWeather'
+import { ReduxStore } from '../../../../types/ReduxStore'
+import moment from "moment"
 
-const CarousalCard = () => {
+interface CarousalCardProps{
+    fiveDayWeatherProps: {
+        weatherArray: Weather[],
+        selectedWeather:Weather | null,
+        timeArray:number[],
+        temperatureArray:number[]
+    },
+    currentDayProps:{
+        weatherObj: CurrentDay | null
+    }
+}
+
+const CarousalCard = ({fiveDayWeatherProps, currentDayProps}:CarousalCardProps) => {
 
     const weatherImg =(forecast:string) => {
         if(forecast === "Clouds"){
@@ -19,40 +33,37 @@ const CarousalCard = () => {
         }
     }
 
-    const utcTime=(utcTime:number, offset:number) => {
+    const utcTime=(utcTime:number) => {
         const date = new Date(utcTime * 1000)
-        const inMinutes = offset/60
+        const inMinutes = currentDayProps.weatherObj?.timezone!/60
         const newdate = moment(date).utcOffset(inMinutes).format('hh:mm A')              
         return newdate
     }
 
-    const utcDay =(utcDate:number, offset:number) => {
+    const utcDay =(utcDate:number) => {
         const date = new Date(utcDate * 1000)
-        const inMinutes = offset/60 
+        const inMinutes = currentDayProps.weatherObj?.timezone!/60 
         const currTime = moment(date).utcOffset(inMinutes).format('ddd') 
         return currTime 
     }
 
-    const  { searchWeather } = useSelector((state:ReduxStore) => state)
-    const { fiveDayWeather } = searchWeather
-    const fiveDayWeatherArr = fiveDayWeather?.list
     const dispatch = useDispatch()
 
     return (
-        <CardGroup className="text-center" id="search-carousal-card">
+        <CardGroup className="text-center" id="carousal-card">
             {
-            fiveDayWeatherArr && fiveDayWeatherArr.map((array,i) => 
+            fiveDayWeatherProps.weatherArray.map((array,i) => 
             <Card 
             onClick={(e:MouseEvent<HTMLElement>) => 
                 {
                     return (
-                        dispatch(searchSelectedWeatherAction(array)),dispatch(searchSelectedDayAction(true))
+                        dispatch(selectedWeatherAction(array)),dispatch(selectedDayAction(true))
                     )
                 }
                 }
             key={i} 
             className="p-2 mx-1 imagetransition">
-                <small className="text-light">{utcDay(array.dt, fiveDayWeather?.city.timezone!)} {utcTime(array.dt, fiveDayWeather?.city.timezone!)}</small>
+                <small className="text-light">{utcDay(array.dt)} {utcTime(array.dt)}</small>
                 <div className="py-2">
                  <Card.Img src={weatherImg(array.weather[0].main)} />
                 </div>

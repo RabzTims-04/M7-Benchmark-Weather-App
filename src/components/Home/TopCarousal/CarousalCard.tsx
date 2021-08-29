@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from 'react'
+import { MouseEvent } from 'react'
 import { Card, CardGroup } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectedDayAction, selectedWeatherAction } from '../../../redux/actions/action'
@@ -25,7 +25,6 @@ const CarousalCard = () => {
             minute: 'numeric',            
             hour12:true
         })
-        console.log(time);
         
         return time
     }
@@ -33,7 +32,6 @@ const CarousalCard = () => {
     const utcDay =(utcDate:number) => {
         const date = new Date(utcDate * 1000)
         const day = date.getDay()
-        console.log(day);
         if(day === 1){
             return "Mon"
         }else if(day === 2){

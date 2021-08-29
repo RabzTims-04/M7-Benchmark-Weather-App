@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import "./Home.css"
 import LeftSide from './LeftSide/LeftSide'
@@ -6,8 +5,24 @@ import MyNav from './MyNav/MyNav'
 import RightSide from './RightSide/RightSide'
 import TopCarousal from './TopCarousal/TopCarousal'
 import logo from "../../assets/logo3.png"
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { Action } from 'redux'
+import { fetchFiveDayWeatherAction, fetchCurrentDayWeatherAction, selectedDayAction } from '../../redux/actions/action'
+
 
 const Home = () => {
+
+    useEffect(() => {
+        thunkDispatch(fetchFiveDayWeatherAction("saarbrücken"))
+        thunkDispatch(fetchCurrentDayWeatherAction("saarbrücken"))
+    },[])
+
+    const thunkDispatch = useDispatch<ThunkDispatch<Action, any, any>>()
+    const dispatch = useDispatch()
+
+        
     return (
         <Container id="home-body">
             <Image fluid className="main-logo" src={logo} alt="logo" />

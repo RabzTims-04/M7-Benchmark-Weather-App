@@ -28,6 +28,16 @@
     padding:0.5rem 1.5rem;
 }
 
+.fav-search-btn{
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.fav-search-btn:hover{
+    background-color: transparent;
+    border-color: transparent;
+}
+
 .search-btn:hover{
     background-color: rgba(109, 105, 105, 0.246);
     border-color: #111a363d;

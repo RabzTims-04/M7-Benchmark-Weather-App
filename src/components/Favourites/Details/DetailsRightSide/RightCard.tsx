@@ -1,15 +1,17 @@
 import React, { MouseEvent } from 'react'
+import { useEffect } from 'react'
 import { Card, Image } from 'react-bootstrap'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
-import { selectedDayAction } from '../../../redux/actions/action'
+import { fetchCurrentDayWeatherAction, selectedDayAction } from '../../../../redux/actions/action'
 import { connect } from 'react-redux'
-import { CurrentDay } from '../../../types/CurrentDayWeather'
-import { ReduxStore } from '../../../types/ReduxStore'
-import { Weather } from '../../../types/WeatherList'
+import { CurrentDay } from '../../../../types/CurrentDayWeather'
+import { ReduxStore } from '../../../../types/ReduxStore'
+import { Weather } from '../../../../types/WeatherList'
 import { AiOutlineHome } from "react-icons/ai"
 import { withRouter, Link, RouteComponentProps } from 'react-router-dom'
 import Moment from 'react-moment'
+import moment from "moment"
 
 const mapStateToProps = (state:ReduxStore) => ({
     currentDay: state.currentDay.weatherObj,
@@ -18,17 +20,19 @@ const mapStateToProps = (state:ReduxStore) => ({
 })
 
 const mapDispatchToProps = (dispatch:ThunkDispatch<Action, any, any>) => ({
+    currentWeather: (city: string) =>dispatch(fetchCurrentDayWeatherAction(city)),
     isSelectedDay: (selected:boolean) => dispatch(selectedDayAction(selected))
 })
 
 interface RightCardProps extends RouteComponentProps{
+    currentWeather:(city:string) => void
     currentDay: CurrentDay | null
     selectedDay: Weather | null
     isSelectedDay: (selected:boolean) => void
     isSelected: boolean   
 }
 
-const RightCard = ({currentDay, selectedDay, isSelectedDay, isSelected }:RightCardProps) => {
+const RightCard = ({currentWeather,currentDay, selectedDay, isSelectedDay, isSelected }:RightCardProps) => {
 
        const weatherImg =(forecast:string) => {
         if(forecast === "Clouds"){
@@ -42,39 +46,19 @@ const RightCard = ({currentDay, selectedDay, isSelectedDay, isSelected }:RightCa
         }
     }
 
-    const utcTime=(utcTime:number) => {
-        const date = new Date(utcTime * 1000) 
-        const time = date.toLocaleString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric'
-        })
-        
-        return time
+    const utcTime=(date:number) => {
+        const newDate = new Date(date * 1000)
+        const inMinutes = currentDay?.timezone!/60 
+        const currTime = moment(newDate).utcOffset(inMinutes).format('hh:mm A')
+        return currTime
     }
 
     const utcDay =(utcDate:number) => {
         const date = new Date(utcDate * 1000)
-        const day = date.getDay()
-        if(day === 1){
-            return "MONDAY"
-        }else if(day === 2){
-            return "TUESDAY"
-        }
-        else if(day === 3){
-            return "WEDNESDAY"
-        }
-        else if(day === 4){
-            return "THURSDAY"
-        }
-        else if(day === 5){
-            return "FRIDAY"
-        }
-        else if(day === 6){
-            return "SATURDAY"
-        }
-        else{
-            return "SUNDAY"
-        }    }
+        const inMinutes = currentDay?.timezone!/60 
+        const currTime = moment(date).utcOffset(inMinutes).format('dddd') 
+        return currTime        
+    }
 
     return (
         <Card id='right-card' style={{ height: '28rem' }}>
@@ -83,7 +67,7 @@ const RightCard = ({currentDay, selectedDay, isSelectedDay, isSelected }:RightCa
                 src={isSelected? weatherImg(selectedDay?.weather[0].main!) : weatherImg(currentDay?.weather[0].main!)} 
                 alt="user avatar" />
                 {isSelected && 
-                <Link onClick={(e:MouseEvent<HTMLElement>) =>isSelectedDay(false)} to="/">
+                <Link onClick={(e:MouseEvent<HTMLElement>) =>isSelectedDay(false)} to={`/details/${currentDay?.name}`}>
                     <AiOutlineHome style={{width:"18px", height:"18px"}} />
                 </Link>}
              
@@ -98,10 +82,10 @@ const RightCard = ({currentDay, selectedDay, isSelectedDay, isSelected }:RightCa
                 <p>{utcTime(isSelected ? selectedDay?.dt! : currentDay?.dt!)}</p> 
                 <span>
                     {utcDay( isSelected? selectedDay?.dt! : currentDay?.dt!)}, {' '}  
-                    <Moment format="DD MM YYYY">{isSelected? (selectedDay?.dt!) * 1000 : (currentDay?.dt!)* 1000 }</Moment>
+                    <Moment utc add={{s:currentDay?.timezone}} format="DD MM YYYY">{isSelected? (selectedDay?.dt!) * 1000 : (currentDay?.dt!)* 1000 }</Moment>
                     </span> 
                 </Card.Text>
-                <div className="footer-details py-4">
+                <div className="footer-details">
                 <div className="d-flex justify-content-between">
                     <span>Feels Like</span>
                     <span>
