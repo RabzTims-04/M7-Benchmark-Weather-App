@@ -6,7 +6,7 @@
 #right-card{
     background-color: #101C42;
     border-radius: 25px;
-    min-height: 75vh;
+    /* min-height: 75vh; */
 }
 
 #right-card a{

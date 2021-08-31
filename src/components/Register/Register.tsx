@@ -1,28 +1,42 @@
 import React, { Component, FormEvent, ChangeEvent } from 'react';
-import { Container, Row, Col, Form, Button } from "react-bootstrap"
+import { Container, Row, Col, Form, Button, Image } from "react-bootstrap"
 import { Link, RouteComponentProps } from 'react-router-dom';
 import Cookies from "universal-cookie"
 import "./Register.css"
+import { connect } from 'react-redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { Action } from 'redux'
+import { fetchUserAction } from '../../redux/actions/action';
+import { ReduxStore } from '../../types/ReduxStore';
+import logo from "../../assets/logo3.png"
+
+const mapStateToProps = (state:ReduxStore) => state
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+    fetchUser : () => dispatch(fetchUserAction())
+})
+
+interface RegisterProps extends RouteComponentProps{
+    fetchUser: () => void
+}
 
 interface RegisterState{
     register:{
-        name: any
-        surname: any
-        avatar: any
-        email:any
+        name: string
+        surname: string
+        email:string
         password: any
     }
 }
 
-const cookies = new Cookies()
+/* const cookies = new Cookies() */
 
-class Register extends Component<RouteComponentProps> {
+class Register extends Component<RegisterProps, RegisterState> {
 
     state:RegisterState = {
         register:{
             name:"",
             surname:"",
-            avatar:"",
             email:"",
             password:""
         }
@@ -44,18 +58,20 @@ class Register extends Component<RouteComponentProps> {
         try {
             const response = await fetch(`${process.env.REACT_APP_BE_URL}auth/register`,{
                 method: "POST",
+                credentials: 'include',
                 body: JSON.stringify(this.state.register),
                 headers:{
-                    "Content-type":"application/json"
+                    "Content-type":"application/json",
+                    'Accept':"application/json",
                 }
             })
             console.log(response);            
             if(response.ok){
+                this.props.fetchUser()
                 this.setState({
                     register:{
                         name:"",
                         surname:"",
-                        avatar:"",
                         email:"",
                         password:""
                     }
@@ -71,6 +87,9 @@ class Register extends Component<RouteComponentProps> {
     render() {
         return (
             <Container className="register-container">
+                <Link to="/">
+                    <Image fluid className="login-main-logo" src={logo} alt="logo" />
+                </Link>
                 <Row className="justify-content-center">
                     <Col md={{span:5, offset:3}} className="register-col">
                         <Form 
@@ -118,14 +137,20 @@ class Register extends Component<RouteComponentProps> {
                                 type="password" 
                                 placeholder="Enter password" />
                             </Form.Group>
-                            <Form.Group  className="mb-3 text-start">
+{/*                             <Form.Group  className="mb-3 text-start">
                                 <small>Upload avatar</small>
                                 <Form.Control 
                                 id="avatar"
-                                value={this.state.register.avatar}
-                                onChange={this.inputChange}
+                                onChange={(e:ChangeEvent<HTMLInputElement>) => {
+                                     this.setState({
+                                        ...this.state,
+                                        image: e.target.files[0]
+                                    }) 
+                                   console.log( e.target.files[0]!);
+                                    
+                                }}
                                 type="file" />
-                            </Form.Group>
+                            </Form.Group> */}
                             <Button className="register-btn py-2 my-2" type="submit">
                                 SignUp
                             </Button>
@@ -142,4 +167,4 @@ class Register extends Component<RouteComponentProps> {
     }
 }
 
-export default Register;
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

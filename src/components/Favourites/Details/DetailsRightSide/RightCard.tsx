@@ -61,7 +61,7 @@ const RightCard = ({currentWeather,currentDay, selectedDay, isSelectedDay, isSel
     }
 
     return (
-        <Card id='right-card' style={{ height: '28rem' }}>
+        <Card id='right-card' style={{ height: '42rem' }}>
             <Card.Body >
                 <Image className="right-card-img" fluid 
                 src={isSelected? weatherImg(selectedDay?.weather[0].main!) : weatherImg(currentDay?.weather[0].main!)} 

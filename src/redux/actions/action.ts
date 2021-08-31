@@ -36,6 +36,10 @@ export const removeFromFavouritesAction = (location:CurrentDay) => ({
     payload: location
 })
 
+export const logoutUserAction = () => ({
+    type: actionTypes.LOGOUT_USER
+})
+
 export const fetchFiveDayWeatherAction = (city:string) => {
     return async (dispatch: Dispatch, getState:() => ReduxStore) => {
         try {            
@@ -184,4 +188,47 @@ const fetchSearchFiveDayWeatherAction = async (city:string) => {
         } catch (error) {
             console.log(error);            
         }
+}
+
+export const fetchUserAction = () => {
+    return async (dispatch: Dispatch, getState:() => ReduxStore) => {
+    try {  
+        dispatch({
+            type: actionTypes.FETCH_USER_LOADING,
+            payload: true
+        })          
+        const response = await fetch(`${process.env.REACT_APP_BE_URL}users/me`,{
+            credentials: 'include',
+        })
+        const data = await response.json()
+        console.log("user data",data);
+        if(response.ok){
+            dispatch({
+                type: actionTypes.FETCH_USER_LOADING,
+                payload: false
+            })  
+            dispatch({
+                type: actionTypes.FETCH_USER,
+                payload: data
+            }) 
+            dispatch({
+                type: actionTypes.FETCH_USER_ERROR,
+                payload: false
+            })               
+        } else{
+            console.log("error fetching user");
+            dispatch({
+                type: actionTypes.FETCH_USER_ERROR,
+                payload: true
+            })             
+        } 
+        console.log(getState);           
+    } catch (error) {
+        console.log(error); 
+        dispatch({
+            type: actionTypes.FETCH_USER_ERROR,
+            payload: true
+        })            
+    }
+  }
 }

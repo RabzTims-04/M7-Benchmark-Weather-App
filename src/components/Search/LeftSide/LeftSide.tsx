@@ -42,7 +42,7 @@ const LeftSide = () => {
             <Row className="pt-3">
                 <LeftCardTop/> 
             </Row>
-            <Row className="py-4">
+            <Row className=" mt-4 pt-4">
                 <LeftCardBottom/>
             </Row>
         </Container>

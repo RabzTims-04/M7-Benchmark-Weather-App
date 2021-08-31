@@ -1,6 +1,7 @@
 import { AirQuality } from "./AirQuality";
 import { CurrentDay } from "./CurrentDayWeather";
 import { SearchFiveDayWeather } from "./SearchFiveDayWeather";
+import { User } from "./User";
 import { Weather } from "./WeatherList";
 
 export interface ReduxStore{
@@ -30,5 +31,10 @@ export interface ReduxStore{
     },
     favourites:{
         locations:CurrentDay[] 
+    },
+    login:{
+        isError: boolean,
+        isLoading: boolean,
+        user: User | null
     }
 }

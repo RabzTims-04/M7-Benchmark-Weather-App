@@ -6,7 +6,7 @@
 #right-card{
     background-color: #101C42;
     border-radius: 25px;
-    min-height: 80vh!important;
+    min-height: 70vh!important;
 }
 
 #right-card:hover{
@@ -63,4 +63,75 @@
 
 .footer-details span{
     font-size: medium;
+}
+
+#profileModal{
+    border-radius: 20%!important;
+    background-color: transparent!important;
+    color: white;
+    border-color: transparent!important;
+}
+
+#profileModal .modal-header{
+    background: linear-gradient(214deg, rgba(23,33,70,1) 19%, rgba(31,34,87,1) 42%, rgba(23,33,70,1) 83%);
+    border-bottom: none!important;
+    border-top-right-radius: 15px!important;
+    border-top-left-radius: 15px!important;
+    border-color: none;
+    border-top-color:rgb(99, 97, 97) ;
+    padding-right: 2em!important;
+    padding-top: 2em!important;
+}
+
+#profileModal .modal-body{
+    background: linear-gradient(214deg, rgba(23,33,70,1) 19%, rgba(31,34,87,1) 42%, rgba(23,33,70,1) 83%);
+}
+
+#profileModal .modal-footer{
+    background: linear-gradient(214deg, rgba(23,33,70,1) 19%, rgba(31,34,87,1) 42%, rgba(23,33,70,1) 83%);
+    border-color:rgb(99, 97, 97)!important ;
+    border-bottom-right-radius: 15px!important;
+    border-bottom-left-radius: 15px!important;
+}
+
+#profileModal .modal-content{
+    background-color: transparent!important;
+    border-color: transparent!important;
+}
+
+#profileModal button{
+    background-color: transparent!important;
+    border-color: transparent!important;
+    padding: 0;
+}
+
+#profileModal button:hover{
+    background-color: rgb(71, 69, 69)!important;
+}
+
+#profileModal button:focus{
+   border-color: transparent!important;
+}
+
+#profileModal button:focus-visible{
+    border-color: transparent!important;
+}
+
+.btn.focus, .btn:focus{
+    box-shadow: transparent!important;
+}
+
+.btn-primary.focus, .btn-primary:focus{
+    box-shadow: transparent!important;
+}
+
+#profileModal svg{
+    color:white!important;
+    width: 26px;
+    height: 26px;
+}
+
+.modalProfilePic{
+    border-radius: 50%;
+    width: 300px;
 }

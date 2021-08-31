@@ -1,9 +1,23 @@
-import React, { Component, FormEvent, ChangeEvent } from 'react';
-import { Container, Row, Col, Form, Button } from "react-bootstrap"
+import { Component, FormEvent, ChangeEvent } from 'react';
+import { Container, Row, Col, Form, Button, Image } from "react-bootstrap"
 import { Link, RouteComponentProps } from 'react-router-dom';
-import axios from "axios"
 import "./Login.css"
-import Cookies from 'universal-cookie/es6';
+import { connect } from 'react-redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { Action } from 'redux'
+import { fetchUserAction } from '../../redux/actions/action';
+import { ReduxStore } from '../../types/ReduxStore';
+import logo from "../../assets/logo3.png"
+
+const mapStateToProps = (state:ReduxStore) => state
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<Action, any, any>) => ({
+    fetchUser : () => dispatch(fetchUserAction())
+})
+
+interface LoginProps extends RouteComponentProps{
+    fetchUser: () => void
+}
 
 interface LoginState{
     login:{
@@ -11,10 +25,7 @@ interface LoginState{
         password: any
     }
 }
-
-const cookies = new Cookies()
-
-class Login extends Component<RouteComponentProps>{
+class Login extends Component<LoginProps, LoginState>{
 
     state:LoginState={
         login:{
@@ -39,15 +50,15 @@ class Login extends Component<RouteComponentProps>{
         try {
             const response = await fetch(`${process.env.REACT_APP_BE_URL}auth/login`,{
                 method: "POST",
-                credentials: 'same-origin',
+                credentials: 'include',
                 body: JSON.stringify(this.state.login),
                 headers:{
                     "Content-type":"application/json",
                     'Accept':"application/json",
-                    "Authorization": "Bearer " + cookies.get('accessToken')
                 }
             })
             if(response.ok){
+                this.props.fetchUser()
                 this.setState({
                     login:{
                         email:"",
@@ -65,6 +76,9 @@ class Login extends Component<RouteComponentProps>{
     render() {
         return (
             <Container className="login-container">
+                <Link to="/">
+                    <Image fluid className="login-main-logo" src={logo} alt="logo" />
+                </Link>
                 <Row className="justify-content-center">
                     <Col md={{span:5, offset:3}} className="login-col">
                         <Form onSubmit={(e)=>this.loginHandle(e)} className="login-form">
@@ -106,4 +120,4 @@ class Login extends Component<RouteComponentProps>{
     }
 }
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

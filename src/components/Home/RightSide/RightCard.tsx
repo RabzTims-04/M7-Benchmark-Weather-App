@@ -101,7 +101,7 @@ const RightCard = ({currentDay, selectedDay, isSelectedDay, isSelected }:RightCa
                     <Moment format="DD MM YYYY">{isSelected? (selectedDay?.dt!) * 1000 : (currentDay?.dt!)* 1000 }</Moment>
                     </span> 
                 </Card.Text>
-                <div className="footer-details py-4">
+                <div className="footer-details">
                 <div className="d-flex justify-content-between">
                     <span>Feels Like</span>
                     <span>

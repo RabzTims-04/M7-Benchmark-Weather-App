@@ -1,5 +1,7 @@
 import { Container, Row, Image } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import { CurrentDay } from '../../../../types/CurrentDayWeather'
+import { ReduxStore } from '../../../../types/ReduxStore'
 import RightCard from './RightCard'
 import './RightSide.css'
 
@@ -10,12 +12,19 @@ interface LeftSideProps{
 }
 
 const RightSide = ({currentDayProps}:LeftSideProps) => {
+
+    const { user } = useSelector((state:ReduxStore) => state.login)
+
     return (
         <Container>
-            <Row className="py-4 justify-content-end">
-                <Image style={{borderRadius:"50%", width:"55px", height:"30px"}} fluid src="https://lh3.googleusercontent.com/ogw/ADea4I6AgO6vlMx5bVpMSaF6eSjZ4cdtbHSEyma2ycvcHQ=s192-c-mo" alt="user avatar" />
+            <Row className="pt-4 justify-content-end">
+                <Image className="mb-2" style={{borderRadius:"50%", width:"55px", height:"30px"}} fluid src={
+                    user
+                    ? user?.avatar 
+                    : "https://www.vabali.de/online/wp-content/uploads/blank-avatar-profile.png"
+                    } alt="user avatar" />
             </Row>
-            <Row className="pt-3">
+            <Row className="mt-5">
                 <RightCard/>
             </Row>
         </Container>

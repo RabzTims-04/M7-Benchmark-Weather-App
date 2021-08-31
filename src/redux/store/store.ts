@@ -8,8 +8,10 @@ import fiveDayWeatherReducer from "../reducers/fiveDayWeatherReducer"
 import SearchWeatherReducer from "../reducers/SearchWeatherReducer"
 import SelectedDayReducer from "../reducers/SelectedDayReducer"
 import storage from "redux-persist/lib/storage"
+import sessionStorage from "redux-persist/lib/storage/session"
 import { encryptTransform } from "redux-persist-transform-encrypt"
 import { persistReducer, persistStore } from "redux-persist"
+import UserReducer from "../reducers/UserReducer"
 
 const composeEnhancers =(window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -40,7 +42,22 @@ export const initialState:ReduxStore = {
     },
     favourites:{
         locations:[]
+    },
+    login:{
+        isError: false,
+        isLoading: false,
+        user: null
     }
+}
+const authPersistConfig = {
+    key:"login",
+    storage:sessionStorage,
+    whitelist:['user'],
+    transforms:[
+        encryptTransform({
+            secretKey:process.env.REACT_APP_SUPER_SECRET as string
+        })
+    ]
 }
 
 const mainReducer = combineReducers({
@@ -49,7 +66,8 @@ const mainReducer = combineReducers({
     daySelected: SelectedDayReducer,
     airQuality: AirQualityReducer,
     searchWeather: SearchWeatherReducer,
-    favourites: favouritesReducer
+    favourites: favouritesReducer,
+    login: persistReducer(authPersistConfig, UserReducer)
 })
 
 const persistConfig = {
@@ -62,6 +80,7 @@ const persistConfig = {
         })
     ]
 }
+
 
 const persistedReducer = persistReducer(persistConfig, mainReducer)
 

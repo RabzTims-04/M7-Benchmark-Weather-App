@@ -29,3 +29,11 @@
 .login-form{
     font-size: 0.9em;
 }
+
+.login-main-logo{
+    height: 95px;
+    width: 110px;
+    position: absolute;
+    left: -20%;
+    top: -130%;
+}

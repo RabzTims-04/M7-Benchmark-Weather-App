@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore, persistor } from './redux/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
-  <Provider store={configureStore}>
-    <PersistGate persistor={persistor} loading={null}>
-       <App />
-    </PersistGate>
-  </Provider>,
+  <CookiesProvider>
+    <Provider store={configureStore}>
+      <PersistGate persistor={persistor} loading={null}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </CookiesProvider>,
   document.getElementById('root')
 );
 
