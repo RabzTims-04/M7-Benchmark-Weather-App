@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
 import { Action } from 'redux'
-import { fetchFiveDayWeatherAction, fetchCurrentDayWeatherAction, selectedDayAction } from '../../redux/actions/action'
+import { fetchFiveDayWeatherAction, fetchCurrentDayWeatherAction } from '../../redux/actions/action'
 
 
 const Home = () => {
@@ -20,7 +20,6 @@ const Home = () => {
     },[])
 
     const thunkDispatch = useDispatch<ThunkDispatch<Action, any, any>>()
-    const dispatch = useDispatch()
 
         
     return (

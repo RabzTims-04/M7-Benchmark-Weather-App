@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { Container, Row, Image, Modal, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -8,6 +8,10 @@ import { fetchUserAction, logoutUserAction } from '../../../redux/actions/action
 import { ReduxStore } from '../../../types/ReduxStore'
 import RightCard from './RightCard'
 import './RightSide.css'
+
+/* interface RightSideState{
+    image: string | Blob
+} */
 
 const RightSide = () => {
 
@@ -22,10 +26,10 @@ const RightSide = () => {
         /* removeCookie('refreshToken') */
     }
 
-    const profileImage = async (e:any) => {
+    const profileImage = async (e:MouseEvent<HTMLButtonElement>) => {
         try {
             const formData = new FormData()
-            formData.set('avatar', userImg.image)
+            formData.set('avatar', userImg?.image)
             e.preventDefault()
             const imgresponse = await fetch(`${process.env.REACT_APP_BE_URL}users/me/cover`,{
                 credentials:'include',
@@ -139,7 +143,9 @@ const RightSide = () => {
                                             </div>
                                             </Button>
 
-                                            <Button onClick={(e:any) => profileImage(e)} variant="secondary" className="d-flex flex-column pr-5">
+                                            <Button onClick={(e:MouseEvent<HTMLButtonElement>) => 
+                                            profileImage(e)} 
+                                            variant="secondary" className="d-flex flex-column pr-5">
                                                 <div className="hoverBtn mx-4">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match ml-4" width="24" height="24" focusable="false">
                                                 <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
